@@ -6,11 +6,12 @@
  * @todo 模版缓存
  */
 
-namespace Cloves\View;
-
+namespace Clovers\View;
+use Illuminate\Support\Facades\Validator;
+use UnexpectedValueException;
+use BadMethodCallException;
 class View
 {
-    const VIEW_BASE_PATH = '/resources/views/';
 
     public $view;
     public $data;
@@ -30,13 +31,13 @@ class View
         throw new BadMethodCallException("方法 [$method] 不存在！.");
     }
 
-    public static function make($viewName)
+    public static function make($view_name)
     {
-        $viewFilePath = self::getFilePath($viewName);
-        if ( is_file($viewFilePath) ) {
-            return new View($viewFilePath);
+        $view_file_path = self::getFilePath($view_name);
+        if ( is_file($view_file_path) ) {
+            return new View($view_file_path);
         } else {
-            throw new UnexpectedValueException("视图文件不存在！");
+            throw new UnexpectedValueException("视图文件[$view_file_path]不存在！");
         }
     }
 
@@ -46,10 +47,10 @@ class View
         return $this;
     }
 
-    private static function getFilePath($viewName)
+    private static function getFilePath($view_name)
     {
-        $filePath = str_replace('.', '/', $viewName);
-        return BASE_PATH.self::VIEW_BASE_PATH.$filePath.'.php';
+        $file_path = str_replace('.', '/', $view_name);
+        return THEME_PATH .'/' . THEME .'/' .  $file_path . '.blade.php';
     }
 
 }
