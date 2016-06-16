@@ -1,13 +1,12 @@
-# ¼ò½é
-
-Clovers ¿ò¼ÜºËÐÄÊÓÍ¼
-
-## °²×°
-```shell
- composer require clovers/view
- ```
- or
- ```shell
-  composer require clovers/view:°æ±¾
- ```
- 
+# ç®€ä»‹
+2	
+3	Clovers æ¡†æž¶æ ¸å¿ƒè§†å›¾
+4	
+5	## å®‰è£…
+6	```shell
+7	 composer require clovers/view
+8	 ```
+9	 or
+10	 ```shell
+11	  composer require clovers/VIEW:ç‰ˆæœ¬
+12	 ```
