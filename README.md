@@ -8,6 +8,6 @@ Clovers 框架核心视图
  ```
  or
  ```shell
-  composer require clovers/VIEW:版本
+  composer require clovers/view:版本
  ```
  
