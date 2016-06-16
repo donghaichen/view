@@ -1,9 +1,9 @@
 <?php
 /**
- * Clover Route  PHP¼«ËÙÊÓÍ¼
+ * Clover Route  PHPæé€Ÿè§†å›¾
  *
  * @author Donghaichen [<chendongahai888@gmailc.com>]
- * @todo Ä£°æ»º´æ
+ * @todo æ¨¡ç‰ˆç¼“å­˜
  */
 
 namespace Cloves\View;
@@ -27,17 +27,17 @@ class View
             return $this->with(snake_case(substr($method, 4)), $parameters[0]);
         }
 
-        throw new BadMethodCallException("·½·¨ [$method] ²»´æÔÚ£¡.");
+        throw new BadMethodCallException("æ–¹æ³• [$method] ä¸å­˜åœ¨ï¼.");
     }
 
     public static function make($viewName)
     {
-            $viewFilePath = self::getFilePath($viewName);
-            if ( is_file($viewFilePath) ) {
-                return new View($viewFilePath);
-            } else {
-                throw new UnexpectedValueException("ÊÓÍ¼ÎÄ¼ş²»´æÔÚ£¡");
-            }
+        $viewFilePath = self::getFilePath($viewName);
+        if ( is_file($viewFilePath) ) {
+            return new View($viewFilePath);
+        } else {
+            throw new UnexpectedValueException("è§†å›¾æ–‡ä»¶ä¸å­˜åœ¨ï¼");
+        }
     }
 
     public function with($key, $value = null)
