@@ -2,12 +2,11 @@
 /**
  * Clover Route  PHP极速视图
  *
- * @author Donghaichen [<chendongahai888@gmailc.com>]
+ * @author Donghaichen [<chendongahai888@gmail.com>]
  * @todo 模版缓存
  */
 
 namespace Clovers\View;
-use Illuminate\Support\Facades\Validator;
 use UnexpectedValueException;
 use BadMethodCallException;
 class View
@@ -49,8 +48,8 @@ class View
 
     private static function getFilePath($view_name)
     {
-        $file_path = str_replace('.', '/', $view_name);
-        return THEME_PATH .'/' . THEME .'/' .  $file_path . '.blade.php';
+        $file_path = str_replace('.', DS, $view_name);
+        return THEME_PATH . DS . THEME . DS .  $file_path . '.blade.php';
     }
 
 }
