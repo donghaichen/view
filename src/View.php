@@ -10,8 +10,8 @@ namespace Clovers\View;
 use UnexpectedValueException;
 class View
 {
-    protected static $view;
-    protected static $data = [];
+    protected static $view = '';
+    protected static $data;
 
     public static function __callStatic($name, $arguments)
     {
