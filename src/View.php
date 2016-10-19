@@ -8,48 +8,39 @@
 
 namespace Clovers\View;
 use UnexpectedValueException;
-use BadMethodCallException;
 class View
 {
+    protected static $view = '';
+    protected static $data;
 
-    public $view;
-    public $data;
-
-    public function __construct($view)
+    public static function __callStatic($name, $arguments)
     {
-        $this->view = $view;
+        self::$view = $arguments[0];
+        self::$data = $arguments[1];
+        return self::_view($arguments[0]);
     }
 
-    public function __call($method, $parameters)
-    {
-        if (starts_with($method, 'with'))
-        {
-            return $this->with(snake_case(substr($method, 4)), $parameters[0]);
-        }
-
-        throw new BadMethodCallException("方法 [$method] 不存在！.");
-    }
-
-    public static function make($view_name)
+    public static function _view($view_name)
     {
         $view_file_path = self::getFilePath($view_name);
-        if ( is_file($view_file_path) ) {
-            return new View($view_file_path);
+        if (is_file($view_file_path) ) {
+            if(is_array(self::$data))
+            {
+                foreach(self::$data as $k => $v)
+                {
+                    $$k = $v;
+                }
+            }
+            include $view_file_path;
         } else {
             throw new UnexpectedValueException("视图文件[$view_file_path]不存在！");
         }
     }
 
-    public function with($key, $value = null)
-    {
-        $this->data[$key] = $value;
-        return $this;
-    }
-
     private static function getFilePath($view_name)
     {
         $file_path = str_replace('.', DS, $view_name);
-        return THEME_PATH . DS . THEME . DS .  $file_path . '.blade.php';
+        return THEME_PATH . DS . THEME . DS .  $file_path . VIEW_SUFFIX;
     }
 
 }
