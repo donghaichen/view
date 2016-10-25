@@ -24,6 +24,10 @@ class View
     {
         $view_file_path = self::getFilePath($view_name);
         if (is_file($view_file_path) ) {
+            if(is_array(self::$data))
+            {
+                extract(self::$data);
+            }
             include $view_file_path;
         } else {
             throw new UnexpectedValueException("视图文件[$view_file_path]不存在！");
